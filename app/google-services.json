@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "967481935753",
+    "firebase_url": "https://matchfoundfinal-default-rtdb.firebaseio.com",
+    "project_id": "matchfoundfinal",
+    "storage_bucket": "matchfoundfinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967481935753:android:2a8e5849a0b2bf194cc358",
+        "android_client_info": {
+          "package_name": "com.example.matchfoundfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967481935753-qk4u2rfp2m1hqqos9etg96e2523h0mod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matchfoundfinal",
+            "certificate_hash": "a65e4b3e5ba3d9ea8592b6d58eaae36ebe4fc1ef"
+          }
+        },
+        {
+          "client_id": "967481935753-ro5r38m6gk83n1l5eth005p4iboj999a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4ZxYGjmuddZhCfyxMt_6EbWUUNRCUQqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967481935753-ro5r38m6gk83n1l5eth005p4iboj999a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
