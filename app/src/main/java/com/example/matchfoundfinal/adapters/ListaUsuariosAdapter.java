@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.matchfoundfinal.R;
 import com.example.matchfoundfinal.dto.UsuarioDTO;
 
@@ -91,8 +93,11 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
         TextView username = holder.itemView.findViewById(R.id.textViewUserrv);
         TextView rango = holder.itemView.findViewById(R.id.textViewRango);
         username.setText(usuarioDTO.getUsername()+"#"+usuarioDTO.getTag());
-        rango.setText("DNI: "+usuarioDTO.getRango());
+        rango.setText("Rango: "+usuarioDTO.getRango());
         Button button = holder.itemView.findViewById(R.id.btnSolicitud);
+        ImageView image = holder.itemView.findViewById(R.id.imageView);
+        Glide.with(context).load(usuarioDTO.getRankImage()).into(image);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

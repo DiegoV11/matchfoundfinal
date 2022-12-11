@@ -9,6 +9,15 @@ public class UsuarioDTO implements Serializable {
     private String descripcion;
     private String agente;
     private String rol;
+    private String rankImage;
+
+    public String getRankImage() {
+        return rankImage;
+    }
+
+    public void setRankImage(String rankImage) {
+        this.rankImage = rankImage;
+    }
 
     public String getRol() {
         return rol;

@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                                             if(dataSnapshot.child("rol").getValue(String.class).equals("ROL_USER")){
                                                 //intent = new Intent(LoginActivity.this, ListaUsuariosActivity.class);
                                                 Toast.makeText(LoginActivity.this,"USUARIO",Toast.LENGTH_SHORT).show();
+
                                             }
                                             if(dataSnapshot.child("rol").getValue(String.class).equals("ROL_ADMIN")){
                                                 //intent = new Intent(LoginActivity.this,AdminMainActivity.class);
