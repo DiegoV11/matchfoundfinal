@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            UsuarioDTO usuarioDTO = new UsuarioDTO(username.getText().toString(),email.getText().toString(),riotTag.getText().toString(),"","","ROL_USER");
+                            UsuarioDTO usuarioDTO = new UsuarioDTO(username.getText().toString(),email.getText().toString(),riotTag.getText().toString(),"","","ROL_USER","hierro");
                             firebaseDatabase.getReference().child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(usuarioDTO).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

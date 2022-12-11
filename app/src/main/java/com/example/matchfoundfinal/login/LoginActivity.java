@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.matchfoundfinal.R;
+import com.example.matchfoundfinal.cliente.ListaUsuariosActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this,"TI",Toast.LENGTH_SHORT).show();
                     }
                     if(dataSnapshot.child("rol").getValue(String.class).equals("ROL_USER")){
-                        //intent = new Intent(LoginActivity.this, ClienteListaDispositivosActivity.class);
+                        intent = new Intent(LoginActivity.this, ListaUsuariosActivity.class);
                         Toast.makeText(LoginActivity.this,"USUARIO",Toast.LENGTH_SHORT).show();
                     }
                     if(dataSnapshot.child("rol").getValue(String.class).equals("ROL_ADMIN")){
@@ -58,7 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }else{
-            ((Button) findViewById(R.id.btnRegister)).setOnClickListener(view -> {
+            Button registerButton = findViewById(R.id.btnRegister);
+            registerButton.setOnClickListener(view -> {
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
             });
