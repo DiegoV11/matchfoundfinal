@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background4"
-    tools:context=".cliente.ListaUsuariosActivity">
+    tools:context=".cliente.ListaSolicitudesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,16 +14,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="vertical"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:orientation="horizontal">
 
             <SearchView
-                android:id="@+id/searchViewUsers"
+                android:id="@+id/searchViewSolicitudes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#00673AB7"
@@ -36,15 +31,8 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewSolicitudes"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

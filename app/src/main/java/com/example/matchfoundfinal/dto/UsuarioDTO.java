@@ -11,6 +11,7 @@ public class UsuarioDTO implements Serializable {
     private String rol;
     private String rankImage;
 
+
     public String getRankImage() {
         return rankImage;
     }

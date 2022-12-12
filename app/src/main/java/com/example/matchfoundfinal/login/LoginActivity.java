@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.matchfoundfinal.R;
 import com.example.matchfoundfinal.cliente.ListaUsuariosActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+        String url = "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png";
+        ImageView imageView = findViewById(R.id.imageViewRadiant);
+        Glide.with(LoginActivity.this).load(url).fitCenter().override(400, 400).into(imageView);
+
         if(firebaseAuth.getCurrentUser() != null){
             databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                 @Override
@@ -92,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 Toast.makeText(LoginActivity.this,"TI",Toast.LENGTH_SHORT).show();
                                             }
                                             if(dataSnapshot.child("rol").getValue(String.class).equals("ROL_USER")){
-                                                //intent = new Intent(LoginActivity.this, ListaUsuariosActivity.class);
+                                                intent = new Intent(LoginActivity.this, ListaUsuariosActivity.class);
                                                 Toast.makeText(LoginActivity.this,"USUARIO",Toast.LENGTH_SHORT).show();
 
                                             }

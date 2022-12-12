@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background4"
     tools:context=".cliente.PerfilActivity">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="494dp"
+        android:layout_width="414dp"
+        android:layout_height="638dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="652dp"
             android:orientation="vertical">
 
             <TextView
@@ -25,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,34 +82,138 @@
                     android:orientation="horizontal"></LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView8"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:text="Descripcion" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textViewDescripcionPerfil"
+                <LinearLayout
+                    android:layout_width="57dp"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="283dp"
+                    android:layout_height="match_parent"
+                    android:text="Descripcion"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:text="TextView" />
+                android:layout_height="66dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewDescripcionPerfil"
+                    android:layout_width="285dp"
+                    android:layout_height="67dp"
+                    android:text="TextView"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="68dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:orientation="vertical"></LinearLayout>
 
-            <TextView
-                android:id="@+id/textView10"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:text="Rol preferido" />
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textViewAgentePerfil"
+                <LinearLayout
+                    android:layout_width="57dp"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="280dp"
+                    android:layout_height="50dp"
+                    android:text="Rol preferido"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:orientation="horizontal"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:text="TextView" />
+                android:layout_height="62dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="59dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewAgentePerfil"
+                    android:layout_width="287dp"
+                    android:layout_height="65dp"
+                    android:text="TextView"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="107dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="46dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnEditarPerfil"
+                        android:layout_width="199dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Editar" />
+
+                    <LinearLayout
+                        android:layout_width="105dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

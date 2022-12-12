@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
@@ -50,6 +51,7 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
             public void onSuccess(DataSnapshot dataSnapshot) {
                 listaUsuarios.clear();
                 for(DataSnapshot children : dataSnapshot.getChildren()){
+                    Log.d("msg","Los ids de cada uno son "+children.getKey());
                     if(children.child("rol").getValue(String.class).equals("ROL_USER")){
                         UsuarioDTO usuarioDTO = children.getValue(UsuarioDTO.class);
                         listaUsuarios.add(usuarioDTO);
@@ -74,7 +76,6 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
             public void onSuccess(DataSnapshot dataSnapshot) {
                 UsuarioDTO userDto =  dataSnapshot.getValue(UsuarioDTO.class);
                 RequestQueue queue = Volley.newRequestQueue(ListaUsuariosActivity.this);
-
                 String usernameParsed="";
                 if(userDto.getUsername().contains(" ")){
                     String[] list = userDto.getUsername().split(" ");
@@ -100,9 +101,9 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
                         userDto.setRankImage(data.getImages().getLarge());
                         String desc;
                         if(Integer.parseInt( data.getMmr_change_to_last_game())>0){
-                            desc= "El usuario tiene "+data.getElo()+" puntos de elo, en su rango tiene "+data.getRanking_in_tier()+" puntos y la ultima partida ha ganado"+data.getMmr_change_to_last_game()+" puntos";
+                            desc= "El usuario tiene "+data.getElo()+" puntos de elo, en su rango tiene "+data.getRanking_in_tier()+" puntos y la ultima partida ha ganado "+data.getMmr_change_to_last_game()+" puntos";
                         }else{
-                            desc= "El usuario tiene "+data.getElo()+" puntos de elo, en su rango tiene "+data.getRanking_in_tier()+" puntos y la ultima partida ha perdido"+data.getMmr_change_to_last_game()+" puntos";
+                            desc= "El usuario tiene "+data.getElo()+" puntos de elo, en su rango tiene "+data.getRanking_in_tier()+" puntos y la ultima partida ha perdido "+data.getMmr_change_to_last_game()+" puntos";
                         }
                         userDto.setDescripcion(desc);
                         databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(userDto);
@@ -142,11 +143,18 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
             case R.id.btnPerfil:
                 Intent intent = new Intent(ListaUsuariosActivity.this, PerfilActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.btnCerrarSesion:
                 firebaseAuth.signOut();
                 Intent intent2 =  new Intent(ListaUsuariosActivity.this, LoginActivity.class);
                 startActivity(intent2);
+                finish();
+                return true;
+            case R.id.btnSolicitudes:
+                Intent intent3 = new Intent(ListaUsuariosActivity.this,ListaSolicitudesActivity.class);
+                startActivity(intent3);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

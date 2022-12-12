@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.matchfoundfinal.R;
+import com.example.matchfoundfinal.adapters.EditarPerfilActivity;
 import com.example.matchfoundfinal.dto.UsuarioDTO;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,8 @@ public class PerfilActivity extends AppCompatActivity {
 
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
+
+
 
 
         FirebaseDatabase.getInstance().getReference().child("users").child(firebaseAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
@@ -94,6 +97,14 @@ public class PerfilActivity extends AppCompatActivity {
                     Toast.makeText(PerfilActivity.this, "No hay imagen adjunta", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        ((Button) findViewById(R.id.btnEditarPerfil)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PerfilActivity.this, EditarPerfilActivity.class);
+                startActivity(intent);
             }
         });
 
