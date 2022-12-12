@@ -40,7 +40,7 @@ public class UsuarioDTO implements Serializable {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String username, String correo, String tag, String descripcion, String agente, String rol,String rango) {
+    public UsuarioDTO(String username, String correo, String tag, String descripcion, String agente, String rol,String rango,String rankImage) {
         this.username = username;
         this.correo = correo;
         this.tag = tag;
@@ -48,7 +48,7 @@ public class UsuarioDTO implements Serializable {
         this.agente = agente;
         this.rol = rol;
         this.rango = rango;
-
+        this.rankImage=rankImage;
     }
 
     public String getUsername() {

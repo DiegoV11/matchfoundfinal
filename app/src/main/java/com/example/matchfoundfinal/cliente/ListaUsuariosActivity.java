@@ -1,12 +1,14 @@
 package com.example.matchfoundfinal.cliente;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.example.matchfoundfinal.adapters.ListaUsuariosAdapter;
 import com.example.matchfoundfinal.dto.ApiDTO;
 import com.example.matchfoundfinal.dto.DataApiDTO;
 import com.example.matchfoundfinal.dto.UsuarioDTO;
+import com.example.matchfoundfinal.login.LoginActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -71,7 +74,21 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
             public void onSuccess(DataSnapshot dataSnapshot) {
                 UsuarioDTO userDto =  dataSnapshot.getValue(UsuarioDTO.class);
                 RequestQueue queue = Volley.newRequestQueue(ListaUsuariosActivity.this);
-                String url = "https://api.henrikdev.xyz/valorant/v1/mmr/"+"na/"+userDto.getUsername()+"/"+userDto.getTag();
+
+                String usernameParsed="";
+                if(userDto.getUsername().contains(" ")){
+                    String[] list = userDto.getUsername().split(" ");
+                    int i = 0;
+                    for(String s : list){
+                        if(i==0){
+                            usernameParsed=s;
+                        }else{
+                            usernameParsed=usernameParsed+"%20"+s;
+                        }
+                        i++;
+                    }
+                }
+                String url = "https://api.henrikdev.xyz/valorant/v1/mmr/"+"na/"+usernameParsed+"/"+userDto.getTag();
 
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -80,6 +97,14 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
                         ApiDTO d = gson.fromJson(response,ApiDTO.class);
                         DataApiDTO data = d.getData();
                         userDto.setRango(data.getCurrenttierpatched());
+                        userDto.setRankImage(data.getImages().getLarge());
+                        String desc;
+                        if(Integer.parseInt( data.getMmr_change_to_last_game())>0){
+                            desc= "El usuario tiene "+data.getElo()+" puntos de elo, en su rango tiene "+data.getRanking_in_tier()+" puntos y la ultima partida ha ganado"+data.getMmr_change_to_last_game()+" puntos";
+                        }else{
+                            desc= "El usuario tiene "+data.getElo()+" puntos de elo, en su rango tiene "+data.getRanking_in_tier()+" puntos y la ultima partida ha perdido"+data.getMmr_change_to_last_game()+" puntos";
+                        }
+                        userDto.setDescripcion(desc);
                         databaseReference.child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(userDto);
                         adapter.notifyDataSetChanged();
                     }
@@ -103,6 +128,30 @@ public class ListaUsuariosActivity extends AppCompatActivity implements SearchVi
         recyclerView.setLayoutManager(new LinearLayoutManager(ListaUsuariosActivity.this));
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_cliente,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+
+        switch (item.getItemId()) {
+            case R.id.btnPerfil:
+                Intent intent = new Intent(ListaUsuariosActivity.this, PerfilActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.btnCerrarSesion:
+                firebaseAuth.signOut();
+                Intent intent2 =  new Intent(ListaUsuariosActivity.this, LoginActivity.class);
+                startActivity(intent2);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public boolean onQueryTextSubmit(String s) {

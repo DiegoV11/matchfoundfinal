@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnUsuarios"
+        android:title="Usuarios" />
+    <item
+        android:id="@+id/btnSolicitudes"
+        android:title="Solicitudes" />
+    <item
+        android:id="@+id/btnPerfil"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/btnCerrarSesion"
+        android:title="Cerrar Sesión" />
+</menu>

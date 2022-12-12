@@ -1,6 +1,7 @@
 package com.example.matchfoundfinal.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.matchfoundfinal.R;
+import com.example.matchfoundfinal.cliente.OtroPerfilActivity;
 import com.example.matchfoundfinal.dto.UsuarioDTO;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -96,11 +102,22 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
         rango.setText("Rango: "+usuarioDTO.getRango());
         Button button = holder.itemView.findViewById(R.id.btnSolicitud);
         ImageView image = holder.itemView.findViewById(R.id.imageView);
-        Glide.with(context).load(usuarioDTO.getRankImage()).into(image);
+        Glide.with(context).load(usuarioDTO.getRankImage()).override(600, 200).into(image);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        UsuarioDTO usuarioPersonal =  dataSnapshot.getValue(UsuarioDTO.class);
+                        UsuarioDTO usuarioDestino = usuarioDTO;
+                    }
+
+                });
+
+
+
                 Log.d("msg","Solicitud");
             }
         });
@@ -108,6 +125,10 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UsuarioDTO usuarioEnviar = usuarioDTO;
+                Intent intent = new Intent(context, OtroPerfilActivity.class);
+                intent.putExtra("usuario",usuarioEnviar);
+                context.startActivity(intent);
                 Log.d("msg","Detalles");
             }
         });

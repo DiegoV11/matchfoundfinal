@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            UsuarioDTO usuarioDTO = new UsuarioDTO(username.getText().toString(),email.getText().toString(),riotTag.getText().toString(),"","","ROL_USER","hierro");
+                            UsuarioDTO usuarioDTO = new UsuarioDTO(username.getText().toString(),email.getText().toString(),riotTag.getText().toString(),"","Duelista","ROL_USER","hierro","https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/3/largeicon.png");
                             firebaseDatabase.getReference().child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(usuarioDTO).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
