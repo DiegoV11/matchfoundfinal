@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,9 +18,11 @@ import com.example.matchfoundfinal.R;
 import com.example.matchfoundfinal.dto.UsuarioDTO;
 import com.example.matchfoundfinal.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class OtroPerfilActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseDatabase firebaseDatabase= FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,18 @@ public class OtroPerfilActivity extends AppCompatActivity {
         descripcion.setText(usuario.getDescripcion());
         rol.setText(usuario.getAgente());
         Glide.with(OtroPerfilActivity.this).load(usuario.getRankImage()).override(600, 200).into(imageView);
+        Button btnReportar = findViewById(R.id.btnReportar);
+        btnReportar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("msg","El id del reportado es "+usuario.getId());
+                usuario.setCantReportes(usuario.getCantReportes()+1);
+                firebaseDatabase.getReference().child("users").child(usuario.getId()).setValue(usuario);
+            }
+        });
+
+
+
 
 
     }

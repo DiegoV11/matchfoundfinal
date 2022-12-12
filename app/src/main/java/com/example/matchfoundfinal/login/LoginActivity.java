@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.matchfoundfinal.R;
+import com.example.matchfoundfinal.admin.AdminListaUsuariosActivity;
 import com.example.matchfoundfinal.cliente.ListaUsuariosActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this,"USUARIO",Toast.LENGTH_SHORT).show();
                     }
                     if(dataSnapshot.child("rol").getValue(String.class).equals("ROL_ADMIN")){
-                        //intent = new Intent(LoginActivity.this,AdminMainActivity.class);
+                        intent = new Intent(LoginActivity.this, AdminListaUsuariosActivity.class);
                         Toast.makeText(LoginActivity.this,"ADMIN",Toast.LENGTH_SHORT).show();
                     }
                     if(intent != null){

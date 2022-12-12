@@ -10,7 +10,24 @@ public class UsuarioDTO implements Serializable {
     private String agente;
     private String rol;
     private String rankImage;
+    private int cantReportes;
+    private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getCantReportes() {
+        return cantReportes;
+    }
+
+    public void setCantReportes(int cantReportes) {
+        this.cantReportes = cantReportes;
+    }
 
     public String getRankImage() {
         return rankImage;
@@ -41,7 +58,7 @@ public class UsuarioDTO implements Serializable {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String username, String correo, String tag, String descripcion, String agente, String rol,String rango,String rankImage) {
+    public UsuarioDTO(String username, String correo, String tag, String descripcion, String agente, String rol,String rango,String rankImage,int cantReportes,String id) {
         this.username = username;
         this.correo = correo;
         this.tag = tag;
@@ -50,6 +67,8 @@ public class UsuarioDTO implements Serializable {
         this.rol = rol;
         this.rango = rango;
         this.rankImage=rankImage;
+        this.cantReportes=cantReportes;
+        this.id=id;
     }
 
     public String getUsername() {
