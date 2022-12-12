@@ -90,6 +90,7 @@ public class ListaSolicitudesAdapter extends RecyclerView.Adapter<ListaSolicitud
             public void onSuccess(DataSnapshot dataSnapshot) {
                 UsuarioDTO usuarioPersonal =  dataSnapshot.getValue(UsuarioDTO.class);
                 Button btn = holder.itemView.findViewById(R.id.buttonAceptarSolicitud);
+                Button btn2 = holder.itemView.findViewById(R.id.buttonRechazarSolicitud);
                 if(solicitudDTO.getReceptor().equalsIgnoreCase(usuarioPersonal.getUsername())){
                     if(solicitudDTO.getEstado().equalsIgnoreCase("pendiente")){
                         btn.setOnClickListener(new View.OnClickListener() {
@@ -109,13 +110,32 @@ public class ListaSolicitudesAdapter extends RecyclerView.Adapter<ListaSolicitud
 
                             }
                         });
+                        btn2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                SolicitudDTO solicitud = solicitudDTO;
+                                Log.d("msg","Estado de la solicitud "+ solicitud.getEstado());
+                                solicitud.setEstado("rechazado");
+                                databaseReference.child("solicitudes").child(solicitud.getId()).setValue(solicitudDTO)
+                                        .addOnSuccessListener(aVoid->{
+                                            Toast.makeText(context,"Solicitud rechazada correctamente",Toast.LENGTH_SHORT).show();
+                                        })
+                                        .addOnFailureListener(e->{
+                                            Log.d("msg",e.getMessage());
+                                        });
+
+                            }
+                        });
                     }else{
                         btn.setEnabled(false);
+                        btn2.setEnabled(false);
                     }
 
                 }else{
                    btn.setEnabled(false);
                    btn.setVisibility(View.INVISIBLE);
+                   btn2.setEnabled(false);
+                   btn2.setVisibility(View.INVISIBLE);
                 }
             }
 

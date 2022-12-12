@@ -170,8 +170,8 @@
 
                 <TextView
                     android:id="@+id/textViewAgentePerfil"
-                    android:layout_width="287dp"
-                    android:layout_height="65dp"
+                    android:layout_width="286dp"
+                    android:layout_height="match_parent"
                     android:text="TextView"
                     android:textColor="@color/white" />
 

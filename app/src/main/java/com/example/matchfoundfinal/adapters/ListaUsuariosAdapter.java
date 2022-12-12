@@ -124,12 +124,12 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
                         solicitudDTO.setEstado("pendiente");
                         solicitudDTO.setSolicitante(usuarioPersonal.getUsername());
                         solicitudDTO.setReceptor(usuarioDestino.getUsername());
-                        solicitudDTO.setMensaje("Hola, soy "+usuarioPersonal.getUsername()+" y mi rango es "+usuarioPersonal.getRango());
+                        solicitudDTO.setMensaje("Hola, soy "+usuarioPersonal.getUsername()+"#"+usuarioPersonal.getTag()+" y mi rango es "+usuarioPersonal.getRango());
 
                         solicitudDTO.setId(databaseReference.child("solicitudes").push().getKey());
                         databaseReference.child("solicitudes").child(solicitudDTO.getId()).setValue(solicitudDTO)
                                 .addOnSuccessListener(aVoid->{
-                                    Toast.makeText(context,"Solicitud enviada correctamente",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context,"Solicitud a "+usuarioDestino.getUsername()+" enviada correctamente",Toast.LENGTH_SHORT).show();
                                 })
                                 .addOnFailureListener(e->{
                                     Log.d("msg",e.getMessage());
